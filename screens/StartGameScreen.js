@@ -7,7 +7,12 @@ function StartGameScreen() {
         <View style={[styles.InputContainer,styles.shadowProp]}>
             <Text style={styles.title}>Guess My Number</Text>
             <Text style={{color:'#fff'}}>Enter a Number</Text>
-            <TextInput style={styles.InputNumber} />
+            <TextInput style={styles.InputNumber}
+                       maxLength={2}
+                       keyboardType={"number-pad"}
+                       autoCapitalize="none"
+                       autoCorrect={false}
+            />
             <View>
                 <PrimaryButton>Reset</PrimaryButton>
                 <PrimaryButton>Confirm</PrimaryButton>

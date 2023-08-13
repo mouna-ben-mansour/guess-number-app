@@ -3,6 +3,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import {StatusBar} from "expo-status-bar";
 import {useState} from "react";
 import Title from "../components/Title";
+import Colors from "../constants/colors";
 
 function StartGameScreen({onConfirmNumber}) {
     const [enteredNumber, setEnteredNumber] = useState('');
@@ -53,7 +54,7 @@ export default StartGameScreen;
 const styles = StyleSheet.create({
 
     InputContainer: {
-        backgroundColor: '#7e3dd7',
+        backgroundColor: Colors.primary500,
         padding: 15,
         marginTop: 100,
         marginHorizontal: 25,
@@ -73,9 +74,9 @@ const styles = StyleSheet.create({
         width: 100,
         fontSize: 35,
         fontWeight: 'bold',
-        color: '#FDEFBA',
+        color: Colors.secondary500,
         borderBottomWidth: 2,
-        borderBottomColor: '#FDEFBA',
+        borderBottomColor: Colors.secondary500,
         textAlign: 'center',
         marginVertical: 8
     },

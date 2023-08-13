@@ -7,7 +7,7 @@ import Colors from "../constants/colors";
 import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstructionText";
 
-function StartGameScreen({onConfirmNumber}) {
+function StartGameScreen({onConfirmNumber, onLayoutView}) {
     const [enteredNumber, setEnteredNumber] = useState('');
     function numberInputHandler(enteredText) {
         setEnteredNumber(enteredText);
@@ -28,7 +28,7 @@ function StartGameScreen({onConfirmNumber}) {
         onConfirmNumber(chosenNumber);
     }
     return (
-        <View style={styles.rootContainer}>
+        <View style={styles.rootContainer} onLayout={onLayoutView}>
             <Title>Guess My Number</Title>
             <Card>
                 <InstructionText>Enter a Number</InstructionText>

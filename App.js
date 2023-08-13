@@ -2,13 +2,31 @@ import {ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
 import { StatusBar } from "expo-status-bar";
 import StartGameScreen from "./screens/StartGameScreen";
 import { LinearGradient } from 'expo-linear-gradient';
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import GameScreen from "./screens/GameScreen";
 import Colors from "./constants/colors";
 import GameOverScreen from "./screens/GameOverScreen";
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
 export default function App() {
     const [userNumber, setUserNumber] = useState(null);
     const [gameIsOver, setGameIsOver] = useState(true);
+    const [fontsLoaded] = useFonts({
+        'open-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+        'open-regular': require('./assets/fonts/OpenSans-Regular.ttf')
+    });
+
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     function pickedNumberHandler(pickedNumber) {
         setUserNumber(pickedNumber);
@@ -17,7 +35,7 @@ export default function App() {
     function gameOverHandler() {
         setGameIsOver(true);
     }
-    let screen = <StartGameScreen onConfirmNumber={pickedNumberHandler}/>
+    let screen = <StartGameScreen onConfirmNumber={pickedNumberHandler} onLayoutView={onLayoutRootView}/>
     if(userNumber) {
         screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler}/>
     }
@@ -26,7 +44,7 @@ export default function App() {
     }
     return (
         <LinearGradient colors={[Colors.primary400,Colors.secondary500]}
-                        style={styles.rootContainer}>
+                        style={styles.rootContainer} >
             <ImageBackground
                 source={require('./assets/background.png')}
                 resizeMode="cover"

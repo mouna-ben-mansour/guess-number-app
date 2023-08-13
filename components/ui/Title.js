@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
     title: {
         fontSize: 20,
-        fontWeight: 'bold',
+        fontFamily: 'open-bold',
         borderWidth: 2,
         borderColor: 'white',
         borderRadius: 15,

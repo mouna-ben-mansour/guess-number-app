@@ -21,16 +21,17 @@ export default PrimaryButton;
 const styles = StyleSheet.create({
     buttonOuterContainer: {
         borderRadius: 30,
-        marginVertical:4,
+        margin:4,
         overflow: 'hidden',
     },
     buttonInnerContainer: {
         backgroundColor: '#9861e7',
         paddingHorizontal: 8,
-        paddingVertical: 16,
+        paddingVertical: 10,
         elevation: 4,
     },
     buttonText: {
+        fontWeight: 'bold',
         color: 'white',
         textAlign: 'center'
     },

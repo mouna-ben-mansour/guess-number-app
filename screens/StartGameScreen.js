@@ -14,7 +14,6 @@ function StartGameScreen({onConfirmNumber}) {
         setEnteredNumber('');
     }
     function confirmInputHandler() {
-        console.log(enteredNumber);
         const chosenNumber = parseInt(enteredNumber);
         if(isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber> 99) {
             Alert.alert(

@@ -3,7 +3,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import {StatusBar} from "expo-status-bar";
 import {useState} from "react";
 
-function StartGameScreen() {
+function StartGameScreen({onConfirmNumber}) {
     const [enteredNumber, setEnteredNumber] = useState('');
     function numberInputHandler(enteredText) {
         setEnteredNumber(enteredText);
@@ -22,7 +22,7 @@ function StartGameScreen() {
             );
             return;
         }
-        console.log('Valid number');
+        onConfirmNumber(chosenNumber);
     }
     return (
         <View style={[styles.InputContainer,styles.shadowProp]}>

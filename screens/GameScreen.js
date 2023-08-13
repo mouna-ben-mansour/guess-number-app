@@ -1,10 +1,11 @@
 import {StyleSheet, Text, View, SafeAreaView} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
+import Title from "../components/Title";
 
 function GameScreen() {
     return(
         <View style={styles.screen}>
-            <Text>GameScreen</Text>
+            <Title>GameScreen</Title>
             <View>
                 <Text>Higher or lower?</Text>
                 <PrimaryButton>+</PrimaryButton>
@@ -38,14 +39,6 @@ const styles = StyleSheet.create({
         shadowOffset: {width: -2, height: 4},
         shadowOpacity: 0.2,
         shadowRadius: 3,
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        borderWidth: 2,
-        borderColor: '#000',
-        borderRadius: 15,
-        padding: 15
     },
     InputNumber: {
         height: 50,

@@ -2,6 +2,7 @@ import {Alert, StyleSheet, Text, TextInput, View} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import {StatusBar} from "expo-status-bar";
 import {useState} from "react";
+import Title from "../components/Title";
 
 function StartGameScreen({onConfirmNumber}) {
     const [enteredNumber, setEnteredNumber] = useState('');
@@ -26,7 +27,7 @@ function StartGameScreen({onConfirmNumber}) {
     }
     return (
         <View style={[styles.InputContainer,styles.shadowProp]}>
-            <Text style={styles.title}>Guess My Number</Text>
+            <Title>Guess My Number</Title>
             <Text style={{color:'#fff'}}>Enter a Number</Text>
             <TextInput style={styles.InputNumber}
                        maxLength={2}
@@ -66,14 +67,6 @@ const styles = StyleSheet.create({
         shadowOffset: {width: -2, height: 4},
         shadowOpacity: 0.2,
         shadowRadius: 3,
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        borderWidth: 2,
-        borderColor: '#000',
-        borderRadius: 15,
-        padding: 15
     },
     InputNumber: {
         height: 50,

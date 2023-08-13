@@ -1,8 +1,8 @@
 import {Alert, StyleSheet, Text, TextInput, View} from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
 import {StatusBar} from "expo-status-bar";
 import {useState} from "react";
-import Title from "../components/Title";
+import Title from "../components/ui/Title";
 import Colors from "../constants/colors";
 
 function StartGameScreen({onConfirmNumber}) {

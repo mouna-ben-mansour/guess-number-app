@@ -1,8 +1,11 @@
-import {StyleSheet, Text, View, SafeAreaView, Alert} from "react-native";
+import {StyleSheet, Text, View, Alert} from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
 import {useEffect, useState} from "react";
 import NumberContainer from "../components/game/NumberContainer";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
+import {Ionicons}from '@expo/vector-icons';
 
 function generateRandomBetween(min, max, exclude) {
     const randomNum = Math.floor(Math.random() * (max - min)) + min;
@@ -46,18 +49,22 @@ function GameScreen({userNumber, onGameOver}) {
     return(
         <View style={styles.screen}>
             <Title>GameScreen</Title>
+            <Card>
             <NumberContainer>{currentGuess}</NumberContainer>
-            <View>
-                <Text>Higher or lower?</Text>
+                <InstructionText customStyle={styles.instructionText}>Higher or lower?</InstructionText>
                 <View style={styles.buttonsContainer}>
                     <View style={styles.buttonContainer}>
-                        <PrimaryButton pressHandler={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
+                        <PrimaryButton pressHandler={nextGuessHandler.bind(this, 'lower')}>
+                            <Ionicons name="md-remove" size={24} color="white" />
+                        </PrimaryButton>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <PrimaryButton pressHandler={nextGuessHandler.bind(this,'greater')}>+</PrimaryButton>
+                        <PrimaryButton pressHandler={nextGuessHandler.bind(this,'greater')}>
+                            <Ionicons name="md-add" size={24} color="white" />
+                        </PrimaryButton>
                     </View>
                 </View>
-            </View>
+            </Card>
             <View>
                 <Text>LOG</Text>
             </View>
@@ -69,13 +76,16 @@ export default GameScreen;
 const styles = StyleSheet.create({
     screen: {
         flex:1,
-        paddingVertical:50,
-        paddingHorizontal: 15
+        marginTop: 100,
+        alignItems: 'center'
     },
     buttonsContainer: {
         flexDirection: 'row'
     },
     buttonContainer: {
         flex:1
+    },
+    instructionText: {
+        marginBottom: 15
     }
 });

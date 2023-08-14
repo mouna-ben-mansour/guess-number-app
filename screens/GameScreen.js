@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Alert} from "react-native";
+import {StyleSheet, Text, View, Alert, FlatList} from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
 import {useEffect, useState} from "react";
@@ -6,6 +6,7 @@ import NumberContainer from "../components/game/NumberContainer";
 import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstructionText";
 import {Ionicons}from '@expo/vector-icons';
+import Colors from "../constants/colors";
 
 function generateRandomBetween(min, max, exclude) {
     const randomNum = Math.floor(Math.random() * (max - min)) + min;
@@ -71,8 +72,17 @@ function GameScreen({userNumber, onGameOver}) {
                     </View>
                 </View>
             </Card>
-            <View>
-                {guessRounds.map(guessRound =>  <Text key={guessRound}>{guessRound}</Text>)}
+            <View style={styles.listContainer}>
+                {/*{guessRounds.map(guessRound =>  <Text key={guessRound}>{guessRound}</Text>)}*/}
+                <FlatList
+                    data={guessRounds}
+                    renderItem={({item}) =>
+                        <View style={styles.itemContainer}>
+                            <Text>Opponent's Guess: {item}</Text>
+                        </View>
+                }
+                    keyExtractor={item => item}
+                />
             </View>
         </View>
     )
@@ -93,5 +103,25 @@ const styles = StyleSheet.create({
     },
     instructionText: {
         marginBottom: 15
+    },
+    itemContainer: {
+        borderColor: Colors.primary700,
+        borderWidth: 1,
+        borderRadius: 40,
+        padding: 12,
+        marginVertical: 8,
+        backgroundColor: Colors.secondary500,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        elevation: 4,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3,
+    },
+    listContainer: {
+        flex: 1,
+        padding: 16,
     }
 });

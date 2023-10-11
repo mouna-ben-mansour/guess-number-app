@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, useWindowDimensions, View} from "react-native";
+import {Image, StyleSheet, Text, useWindowDimensions, View, ScrollView} from "react-native";
 import Title from "../components/ui/Title";
 import Colors from "../constants/colors";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -6,10 +6,23 @@ import PrimaryButton from "../components/ui/PrimaryButton";
 function GameOverScreen({roundsNumber, userNumber, onStartNewGame}) {
     const { width, height } = useWindowDimensions();
     const marginTop = height < 400 ? 30 : 100;
+    let imageSize = 250;
+    if (width < 380 ) {
+        imageSize = 150;
+    }
+    if ( height < 500) {
+        imageSize = 80;
+    }
+    const imageStyle = {
+        width: imageSize,
+        height: imageSize,
+        borderRadius: imageSize / 2
+    }
     return (
+        <ScrollView style={styles.screen}>
         <View style={[styles.rootContainer, { marginTop: marginTop }]}>
             <Title>Game Over</Title>
-            <View style={styles.imageContainer}>
+            <View style={[styles.imageContainer, imageStyle]}>
                 <Image source={require('../assets/success.png')} style={styles.image}/>
             </View>
             <Text style={styles.summaryText}>
@@ -18,12 +31,16 @@ function GameOverScreen({roundsNumber, userNumber, onStartNewGame}) {
             </Text>
             <PrimaryButton pressHandler={onStartNewGame}>Start New Game</PrimaryButton>
         </View>
+        </ScrollView>
     )
 }
 
 export default GameOverScreen;
 
 const styles = StyleSheet.create({
+    screen: {
+        flex:1
+    },
     rootContainer: {
         flex: 1,
       //  marginTop: 100,

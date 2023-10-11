@@ -57,25 +57,48 @@ function GameScreen({userNumber, onGameOver}) {
         setGuessRounds(prevGuessRounds=> [newRndNumber,...prevGuessRounds])
     }
     const marginTop = height < 400 ? 30 : 100;
-    return(
-        <View style={[styles.screen, { marginTop: marginTop }]}>
-            <Title>GameScreen</Title>
-            <Card>
+    let content =( <>
+        <Card>
             <NumberContainer>{currentGuess}</NumberContainer>
-                <InstructionText customStyle={styles.instructionText}>Higher or lower?</InstructionText>
-                <View style={styles.buttonsContainer}>
+            <InstructionText customStyle={styles.instructionText}>Higher or lower?</InstructionText>
+            <View style={styles.buttonsContainer}>
+                <View style={styles.buttonContainer}>
+                    <PrimaryButton pressHandler={nextGuessHandler.bind(this, 'lower')}>
+                        <Ionicons name="md-remove" size={24} color="white" />
+                    </PrimaryButton>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <PrimaryButton pressHandler={nextGuessHandler.bind(this,'greater')}>
+                        <Ionicons name="md-add" size={24} color="white" />
+                    </PrimaryButton>
+                </View>
+            </View>
+        </Card>
+    </>);
+
+    if  (width > 500) {
+        content = (
+            <>
+                <View style={styles.buttonsContainerWide}>
                     <View style={styles.buttonContainer}>
                         <PrimaryButton pressHandler={nextGuessHandler.bind(this, 'lower')}>
                             <Ionicons name="md-remove" size={24} color="white" />
                         </PrimaryButton>
                     </View>
+                    <NumberContainer>{currentGuess}</NumberContainer>
                     <View style={styles.buttonContainer}>
                         <PrimaryButton pressHandler={nextGuessHandler.bind(this,'greater')}>
                             <Ionicons name="md-add" size={24} color="white" />
                         </PrimaryButton>
                     </View>
                 </View>
-            </Card>
+            </>
+        )
+    }
+    return(
+        <View style={[styles.screen, { marginTop: marginTop }]}>
+            <Title>GameScreen</Title>
+            {content}
             <View style={styles.listContainer}>
                 {/*{guessRounds.map(guessRound =>  <Text key={guessRound}>{guessRound}</Text>)}*/}
                 <FlatList
@@ -97,6 +120,10 @@ const styles = StyleSheet.create({
     screen: {
         flex:1,
       //  marginTop: 100,
+        alignItems: 'center'
+    },
+    buttonsContainerWide: {
+        flexDirection: 'row',
         alignItems: 'center'
     },
     buttonsContainer: {

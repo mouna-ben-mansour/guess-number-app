@@ -50,8 +50,10 @@ export default function App() {
         screen = <GameOverScreen userNumber={userNumber} onStartNewGame={startNewGameHandler} roundsNumber={guessRounds}/>
     }
     return (
+
         <LinearGradient colors={[Colors.primary400,Colors.secondary500]}
                         style={styles.rootContainer} >
+            <StatusBar backgroundColor="blue" barStyle="light-content" />
             <ImageBackground
                 source={require('./assets/background.png')}
                 resizeMode="cover"

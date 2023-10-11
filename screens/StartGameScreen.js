@@ -1,4 +1,13 @@
-import {Alert, StyleSheet, TextInput, View, Dimensions, useWindowDimensions} from "react-native";
+import {
+    Alert,
+    StyleSheet,
+    TextInput,
+    View,
+    Dimensions,
+    useWindowDimensions,
+    ScrollView,
+    KeyboardAvoidingView
+} from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import {StatusBar} from "expo-status-bar";
 import {useState} from "react";
@@ -31,6 +40,8 @@ function StartGameScreen({onConfirmNumber, onLayoutView}) {
     }
     const marginTop = height < 400 ? 30 : 100;
     return (
+        <ScrollView style={styles.screen}>
+        <KeyboardAvoidingView style={styles.screen} behavior="position">
         <View style={[styles.rootContainer, { marginTop: marginTop }]} onLayout={onLayoutView}>
             <Title>Guess My Number</Title>
             <Card>
@@ -53,11 +64,16 @@ function StartGameScreen({onConfirmNumber, onLayoutView}) {
                 </View>
             </Card>
         </View>
+        </KeyboardAvoidingView>
+        </ScrollView>
     )
 }
 export default StartGameScreen;
 //const deviceHeight = Dimensions.get("window").height;
 const styles = StyleSheet.create({
+    screen: {
+        flex:1
+    },
     rootContainer: {
         flex:1,
        // marginTop: deviceHeight < 400 ? 30 : 100,

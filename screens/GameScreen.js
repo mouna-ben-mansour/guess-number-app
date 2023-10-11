@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Alert, FlatList} from "react-native";
+import {StyleSheet, Text, View, Alert, FlatList, useWindowDimensions} from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
 import {useEffect, useState} from "react";
@@ -23,6 +23,9 @@ function GameScreen({userNumber, onGameOver}) {
     const initialGuess =  generateRandomBetween(1, 100, userNumber);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
     const [guessRounds, setGuessRounds] = useState([initialGuess]);
+
+    const { width, height } = useWindowDimensions();
+
     useEffect(() => {
         if(currentGuess === userNumber) {
             onGameOver(guessRounds.length);
@@ -53,8 +56,9 @@ function GameScreen({userNumber, onGameOver}) {
         setCurrentGuess(newRndNumber);
         setGuessRounds(prevGuessRounds=> [newRndNumber,...prevGuessRounds])
     }
+    const marginTop = height < 400 ? 30 : 100;
     return(
-        <View style={styles.screen}>
+        <View style={[styles.screen, { marginTop: marginTop }]}>
             <Title>GameScreen</Title>
             <Card>
             <NumberContainer>{currentGuess}</NumberContainer>
@@ -92,7 +96,7 @@ export default GameScreen;
 const styles = StyleSheet.create({
     screen: {
         flex:1,
-        marginTop: 100,
+      //  marginTop: 100,
         alignItems: 'center'
     },
     buttonsContainer: {
